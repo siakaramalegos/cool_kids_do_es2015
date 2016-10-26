@@ -6,7 +6,7 @@ Cool features of ES2015 - part of my lightning talk for Viking Code School
 - [Default Parameters](#default-parameters)
 - [Object Destructuring in Parameters](#object-destructuring-in-parameters)
 - [Template Strings](#template-strings)
-- [Spread Operator](#spread-operator)
+- [Rest and Spread](#rest-and-spread)
 - [Arrow Functions](#arrow-functions)
 
 ## `const` and `let`
@@ -96,8 +96,69 @@ var name = "Bob", time = "today";
 `Hello ${name}, how are you ${time}?`
 ```
 
-## Spread Operator
+## Rest and Spread
+[MDN Docs for spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator), [MDN Docs for rest](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)
 
+(partially from Babel's [Learn ES2015](https://babeljs.io/docs/learn-es2015/))
+Turn an array into consecutive arguments in a function call. Bind trailing parameters to an array using a rest parameter:
+```javascript
+function f(x, ...y) {
+  // y is an Array
+  return x * y.length;
+}
+f(3, "hello", true) == 6
+```
+
+The spread operator helps reduce boilerplate code for multiple arguments...
+```javascript
+function f(x, y, z) {
+  return x + y + z;
+}
+// Pass each elem of array as argument
+const args = [1,2,3]
+f(...args) == 6
+```
 
 ## Arrow Functions
-“Doesn’t actually bind this”
+[MDN Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+Arrow functions help reduce boilerplate syntax and also share the same lexical `this` as their surrounding code.
+
+Here's an example of shorter length/syntax:
+```javascript
+var a = [
+  "Hydrogen",
+  "Helium",
+  "Lithium",
+  "Beryl­lium"
+];
+
+var a2 = a.map(function(s){ return s.length });
+var a3 = a.map( s => s.length );
+```
+
+Here's an example of sharing lexical `this`. This is what we had to do before arrow functions to get functions with different scopes to behave as expected inside objects:
+```javascript
+function Person() {
+  var that = this;
+  that.age = 0;
+
+  setInterval(function growUp() {
+    // The callback refers to the `that` variable of which
+    // the value is the expected object.
+    that.age++;
+  }, 1000);
+}
+```
+
+But arrow functions allow us to write much less code to get the results that we intend:
+```javascript
+function Person(){
+  this.age = 0;
+
+  setInterval(() => {
+    this.age++; // |this| properly refers to the person object
+  }, 1000);
+}
+
+var p = new Person();
+```
