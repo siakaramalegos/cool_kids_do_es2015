@@ -1,6 +1,14 @@
 # Cool Kids Do ES2015
 Cool features of ES2015 - part of my lightning talk for Viking Code School
 
+**Contents**
+- [`const` and `let`](#const-and-let)
+- [Default Parameters](#default-parameters)
+- [Object Destructuring in Parameters](#object-destructuring-in-parameters)
+- [Template Strings](#template-strings)
+- [Spread Operator](#spread-operator)
+- [Arrow Functions](#arrow-functions)
+
 ## `const` and `let`
 [MDN Docs for const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const), [MDN Docs for let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
 Pink is the new black and `let` is the new `var`. `const` is for single-assignment, or read-only items - the name cannot be reassigned but you can, for example, add a new key-value pair to an object `const`. Use `const` unless you really need a reassignable variable - it makes for cleaner, easier to understand code.
@@ -88,3 +96,8 @@ var name = "Bob", time = "today";
 `Hello ${name}, how are you ${time}?`
 ```
 
+## Spread Operator
+
+
+## Arrow Functions
+“Doesn’t actually bind this”
